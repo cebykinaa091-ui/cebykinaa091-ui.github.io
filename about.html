@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - Салон красоты «Центрифуга»</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #F1EAD8;
+            color: #2D2F22;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ТЁМНАЯ ТЕМА */
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        body.dark-mode .header,
+        body.dark-mode .about-text,
+        body.dark-mode .master-card {
+            background: #2a2a3a;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+        body.dark-mode .nav-menu a {
+            color: #e0e0e0;
+        }
+        body.dark-mode .nav-menu a:hover {
+            background: #444;
+        }
+        body.dark-mode .section-title {
+            color: #e0e0e0;
+        }
+        body.dark-mode .master-spec {
+            color: #aaa;
+        }
+
+        :root {
+            --primary: #8A8E75;
+            --primary-dark: #6B6F56;
+            --secondary: #D5C7AD;
+            --text-dark: #555840;
+            --text-light: #68604D;
+            --border-light: #D5C7AD;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* ШАПКА */
+        .header {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: #FFFFFF;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+
+        .brand-highlight {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            display: inline-block;
+            margin: 0.5rem 0;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            transition: 0.2s;
+        }
+
+        .nav-menu a:hover {
+            background: var(--secondary);
+        }
+
+        /* ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 1001;
+            box-shadow: var(--shadow-sm);
+            transition: 0.2s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-dark);
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+
+        .about-text {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);transition: background 0.3s;
+        }
+
+        .about-text p {
+            margin-bottom: 0.8rem;
+        }
+
+        /* СЕТКА МАСТЕРОВ (10 карточек) */
+        .masters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .master-card {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .master-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* КРУГЛОЕ ФОТО МАСТЕРА */
+        .master-photo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 0.8rem;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+
+        .master-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .master-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .master-spec {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin: 0.2rem 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-light);
+            margin-top: 2rem;
+        }
+
+        .btn-back {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover {
+            background: var(--primary-dark);
+            transform: scale(0.97);
+        }
+
+        max-width: 680px {
+            .brand-highlight {
+                font-size: 2rem;
+            }
+            .master-photo {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<!-- ======================================================= -->
+<!-- ========== НАСТРОЙКА ФОТОГРАФИЙ МАСТЕРОВ ========== -->
+<!-- ======================================================= -->
+<!-- ✅✅✅ СЮДА ВСТАВЬТЕ ССЫЛКИ НА ФОТО МАСТЕРОВ ✅✅✅ -->
+
+<script>
+    // ========== ФОТО ДЛЯ 10 МАСТЕРОВ ==========
+    // Вставьте пути к вашим фото в кавычки (например: "photos/anna.jpg")
+    
+    const masterPhoto1 = "https://i.pinimg.com/736x/99/67/8d/99678da5ef13726c2beb968d0916998a.jpg";   // Анна Ковалева
+    const masterPhoto2 = "https://i.pinimg.com/736x/ad/9d/2f/ad9d2f25e5f7bd409425959ae270ce09.jpg";   // Елена Волкова
+    const masterPhoto3 = "https://i.pinimg.com/736x/1d/ab/46/1dab461aefb198914cd86e06cfce3b51.jpg";   // Мария Соколова
+    const masterPhoto4 = "https://i.pinimg.com/736x/b8/ed/ee/b8edee777b644074fbc1882e1173ad99.jpg";   // Дмитрий Орлов
+    const masterPhoto5 = "https://i.pinimg.com/736x/19/dc/6b/19dc6b3c9cd163934c0a7c528415b019.jpg";   // Ирина Мельник
+    const masterPhoto6 = "https://i.pinimg.com/736x/c9/d0/d6/c9d0d64a00e9e76a9e2d93de55cea6e4.jpg";   // Ольга Новикова
+    const masterPhoto7 = "https://i.pinimg.com/736x/54/c7/21/54c721961679d22e83ae13942bdab471.jpg";   // Светлана Морозова
+    const masterPhoto8 = "https://i.pinimg.com/1200x/8d/af/bc/8dafbc895e6d556087adf77a19d679bc.jpg";   // Екатерина Белова
+    const masterPhoto9 = "https://i.pinimg.com/736x/a1/47/2c/a1472cbfc702409c44a16586b14c6d5d.jpg";   // Александр Кузнецов
+    const masterPhoto10 = "https://i.pinimg.com/736x/19/dc/6b/19dc6b3c9cd163934c0a7c528415b019.jpg";  // Татьяна Павлова
+</script>
+<!-- ======================================================= -->
+
+<div class="container">
+    <div class="header">
+        <h1>Салон Красоты</h1>
+        <div class="brand-highlight">Центрифуга</div>
+        <div class="nav-menu">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">О нас</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+    </div>
+
+    <!-- БЛОК О САЛОНЕ -->
+    <h2 class="section-title">О салоне</h2><div class="about-text">
+        <p><strong>Салон красоты «Центрифуга»</strong> — это пространство, где красота встречается с профессионализмом. Мы открыли свои двери в 2015 году и за это время стали одним из самых любимых мест для тех, кто ценит качество и индивидуальный подход.</p>
+        <p>В нашем салоне работают только дипломированные мастера с опытом от 5 лет. Мы используем профессиональную косметику премиум-брендов: L'Oreal Professionnel, CND, Bioaqua, Sesderma.</p>
+        <p>Мы создаём уютную атмосферу, где каждый клиент чувствует себя особенным. Для вас — свежий кофе, приятная музыка и индивидуальная консультация.</p>
+        <p><strong>Наша миссия</strong> — дарить радость и уверенность через красоту. Мы следим за трендами и постоянно повышаем квалификацию, чтобы предлагать вам самые современные услуги.</p>
+    </div>
+
+    <!-- БЛОК МАСТЕРОВ (10 ШТУК) -->
+    <h2 class="section-title">Наши мастера</h2>
+    <div class="masters-grid" id="mastersGrid">
+        <!-- Карточки мастеров заполнятся автоматически из JavaScript -->
+    </div>
+
+    <div class="footer-note">
+        <a href="index.html" class="btn-back">← Вернуться на главную</a>
+    </div>
+</div>
+
+<script>
+    // ========== ТЁМНАЯ ТЕМА ==========
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.querySelector('.theme-toggle');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    // Проверяем сохранённую тему при загрузке
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+
+    // ========== ДАННЫЕ МАСТЕРОВ (10 ЧЕЛОВЕК) ==========
+    const masters = [
+        { name: "Анна Ковалева", spec: "Топ-стилист, колорист", exp: "стаж 9 лет", photo: masterPhoto1 },
+        { name: "Елена Волкова", spec: "Мастер маникюра", exp: "стаж 6 лет", photo: masterPhoto2 },
+        { name: "Мария Соколова", spec: "Визажист-стилист", exp: "стаж 7 лет", photo: masterPhoto3 },
+        { name: "Дмитрий Орлов", spec: "Барбер, мужские стрижки", exp: "стаж 5 лет", photo: masterPhoto4 },
+        { name: "Ирина Мельник", spec: "Спа-терапевт", exp: "стаж 4 года", photo: masterPhoto5 },
+        { name: "Ольга Новикова", spec: "Мастер бровей и ресниц", exp: "стаж 5 лет", photo: masterPhoto6 },
+        { name: "Светлана Морозова", spec: "Парикмахер-универсал", exp: "стаж 8 лет", photo: masterPhoto7 },
+        { name: "Екатерина Белова", spec: "Мастер педикюра", exp: "стаж 6 лет", photo: masterPhoto8 },
+        { name: "Александр Кузнецов", spec: "Топ-стилист", exp: "стаж 10 лет", photo: masterPhoto9 },
+        { name: "Татьяна Павлова", spec: "Косметолог-эстетист", exp: "стаж 7 лет", photo: masterPhoto10 }
+    ];
+
+    // ========== АВТОМАТИЧЕСКАЯ ЗАГРУЗКА КАРТОЧЕК МАСТЕРОВ ==========
+    function loadMasters() {
+        const container = document.getElementById('mastersGrid');
+        if (!container) return;
+        
+        container.innerHTML = "";
+        for (let m of masters) {
+            let photoHtml = "";
+            if (m.photo && m.photo !== "") {
+                photoHtml = `<img src="${m.photo}" alt="${m.name}">`;
+            } else {
+                photoHtml = `<span style="font-size: 2rem;">➕</span>`;
+            }
+            
+            container.innerHTML += `
+                <div class="master-card">
+                    <div class="master-photo">${photoHtml}</div>
+                    <div class="master-name">${m.name}</div>
+                    <div class="master-spec">${m.spec}</div>
+                    <div class="master-spec">${m.exp}</div>
+                </div>
+            `;
+        }
+    }
+
+    // Запускаем загрузку карточек мастеров
+    loadMasters();
+</script>
+
+</body>
+</html>

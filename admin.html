@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - Салон красоты</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #f0f2f5;
+            padding: 2rem;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #b95f4a; margin-bottom: 1rem; }
+        table {
+            width: 100%;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th { background: #b95f4a; color: white; }
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        .stats {
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+        max-width: 700px { body { padding: 1rem; } th, td { padding: 0.5rem; font-size: 0.8rem; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📋 Админ-панель записей</h1>
+    <div class="stats">
+        <div>📊 Всего записей: <strong id="totalCount">0</strong></div>
+        <div>📅 Записей на сегодня: <strong id="todayCount">0</strong></div>
+    </div>
+    <button class="clear-btn" onclick="clearAllData()">🗑️ Очистить все записи</button>
+    <table id="bookingsTable">
+        <thead>
+            <tr><th>Дата</th><th>Время</th><th>Услуга</th><th>Мастер</th><th>Клиент</th><th>Телефон</th><th>Комментарий</th></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<script>
+    function loadBookings() {
+        const bookings = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.includes('_')) {
+                const [master, date, time] = key.split('_');
+                const clientName = localStorage.getItem(key);
+                bookings.push({ master, date, time, clientName });
+            }
+        }
+        bookings.sort((a,b) => (a.date + a.time).localeCompare(b.date + b.time));
+        
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+        
+        let total = 0, today = 0;
+        const todayStr = new Date().toISOString().split('T')[0];
+        
+        for (let b of bookings) {
+            total++;
+            if (b.date === todayStr) today++;
+            tbody.innerHTML += `<tr><td>${b.date}</td><td>${b.time}</td><td>—</td><td>${b.master}</td><td>${b.clientName}</td><td>—</td><td>—</td></tr>`;
+        }
+        
+        document.getElementById('totalCount').innerText = total;
+        document.getElementById('todayCount').innerText = today;
+    }
+    
+    function clearAllData() {
+        if (confirm("Удалить все записи?")) {
+            const keysToRemove = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key && key.includes('_')) keysToRemove.push(key);
+            }
+            keysToRemove.forEach(key => localStorage.removeItem(key));
+            loadBookings();
+        }
+    }
+    
+    loadBookings();
+</script>
+</body>
+</html>

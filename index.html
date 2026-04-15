@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Салон красоты «Центрифуга» - Главная</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #F1EAD8, #E8DDD0, #F1EAD8);
+            background-size: 200% 200%;
+            animation: gradientShift 12s ease infinite;
+            color: #2D2F22;
+            transition: background 0.3s ease, color 0.3s ease;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"><path fill="%238A8E75" d="M12,0 C12,0 0,10 0,18 C0,23 5,27 12,27 C19,27 24,23 24,18 C24,10 12,0 12,0 Z"/><circle fill="white" cx="12" cy="18" r="4"/></svg>') 12 18, auto;
+        }
+
+        /* ПЛАВНЫЙ ГРАДИЕНТ */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ТЁМНАЯ ТЕМА */
+        body.dark-mode {
+            background: linear-gradient(145deg, #1a1a2e, #16213e, #1a1a2e);
+            background-size: 200% 200%;
+            animation: gradientShift 12s ease infinite;
+            color: #e0e0e0;
+        }
+        body.dark-mode .header,
+        body.dark-mode .service-card,
+        body.dark-mode .price-item,
+        body.dark-mode .newsletter,
+        body.dark-mode .contact-info {
+            background: #2a2a3a;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+        body.dark-mode .btn-primary {
+            background: #6B6F56;
+        }
+        body.dark-mode .work-photo,
+        body.dark-mode .service-photo {
+            background: #3a3a4a;
+        }
+        body.dark-mode .nav-menu a {
+            color: #e0e0e0;
+        }
+        body.dark-mode .nav-menu a:hover {
+            background: #444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #8A8E75;
+            --primary-dark: #6B6F56;
+            --secondary: #D5C7AD;
+            --text-dark: #2D2F22;
+            --text-light: #68604D;
+            --card-bg: #FFFFFF;
+            --border-light: #D5C7AD;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* ШАПКА */
+        .header {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: #FFFFFF;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+
+        .brand-highlight {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            display: inline-block;
+            margin: 0.5rem 0;
+            letter-spacing: 2px;
+            min-height: 70px;
+            cursor: pointer;
+        }
+
+        .tagline {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+        }
+
+        /* ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 1001;
+            box-shadow: var(--shadow-md);
+            transition: 0.2s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* КОТИК-ТАЛИСМАН */
+        .mascot {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 1000;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            animation: floatMascot 3s ease-in-out infinite;
+        }
+
+        @keyframes floatMascot {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .mascot:hover {
+            transform: scale(1.1);
+        }
+
+        /* ПЛАВАЮЩАЯ КНОПКА ТЕЛЕФОНА */
+        .floating-phone {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: 0.2s;
+            animation: gentlePulse 2s infinite;
+        }
+
+        @keyframes gentlePulse {
+            0% { box-shadow: 0 0 0 0 rgba(138, 142, 117, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(138, 142, 117, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(138, 142, 117, 0); }
+        }
+
+        .floating-phone:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            transition: 0.2s;
+        }
+        .nav-menu a:hover { background: var(--secondary); }
+
+        .contact-info {
+            background: #FFFFFF;
+            border-radius: 2rem;
+            padding: 0.8rem 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+
+        /* ПУЛЬСИРУЮЩАЯ КНОПКА */
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.9rem;
+            animation: btnPulse 2s infinite;
+        }
+
+        @keyframes btnPulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 142, 117, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 0 8px rgba(138, 142, 117, 0.2); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 142, 117, 0); }
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: scale(0.98);
+            animation: none;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-dark);
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }/* УСЛУГИ С ПЛАВАЮЩИМИ ИКОНКАМИ */
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .service-card {
+            width: 240px;
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ПОДСКАЗКА ПРИ НАВЕДЕНИИ */
+        .service-card:hover::after {
+            content: "✨ Выберите эту услугу ✨";
+            position: absolute;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            bottom: -1.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .service-photo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 0.8rem;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .service-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .service-card h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 0.3rem; }
+        .service-price { font-size: 0.9rem; color: var(--primary); font-weight: 600; margin: 0.3rem 0; }
+
+        /* ПРИМЕРЫ РАБОТ */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .price-item {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border-light);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        .price-item:nth-child(1) { animation-delay: 0.1s; }
+        .price-item:nth-child(2) { animation-delay: 0.2s; }
+        .price-item:nth-child(3) { animation-delay: 0.3s; }
+        .price-item:nth-child(4) { animation-delay: 0.4s; }
+        .price-item:nth-child(5) { animation-delay: 0.5s; }
+        .price-item:nth-child(6) { animation-delay: 0.6s; }
+        .price-item:nth-child(7) { animation-delay: 0.7s; }
+        .price-item:nth-child(8) { animation-delay: 0.8s; }
+
+        .price-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+        .work-photo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 0.8rem;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+        }
+        .work-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .price-item h3 { font-size: 1rem; margin: 0.5rem 0; }
+        .price-tag { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin: 0.3rem 0; }
+
+        /* НОВОСТНАЯ ПОДПИСКА */
+        .newsletter {
+            background: #FFFFFF;
+            border-radius: 2rem;
+            padding: 1.2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+        .newsletter h4 { font-size: 1rem; margin-bottom: 0.8rem; }
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .newsletter-form input {
+            padding: 0.7rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border-light);
+            width: 250px;
+            font-family: inherit;
+        }
+        .newsletter-form .btn-primary { padding: 0.7rem 1.5rem; animation: none; }
+
+        .footer-note {
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-light);
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            font-size: 1.2rem;
+            z-index: 1000;
+        }
+
+        /* АНИМАЦИЯ ДЛЯ СЕРДЕЧЕК */
+        @keyframes floatHeart {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-100px) rotate(20deg); }
+        }
+
+        max-width: 680px {
+            .brand-highlight { font-size: 2rem; }
+            .newsletter-form { flex-direction: column; align-items: center; }
+            .newsletter-form input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+<a href="tel:+79991234567" class="floating-phone">📞</a>
+<button class="scroll-top" onclick="scrollToTop()">↑</button>
+
+<!-- КОТИК-ТАЛИСМАН -->
+<div class="mascot" onclick="mascotTalk()"></div>
+
+<!-- ======================================================= -->
+<!-- ========== НАСТРОЙКА ФОТОГРАФИЙ ========== -->
+<!-- ======================================================= -->
+<script>
+    // ========== ФОТО ДЛЯ КАРТОЧЕК УСЛУГ (4 штуки) ==========
+    const photoHair = "https://i.pinimg.com/1200x/1b/0c/53/1b0c538f2e8a280c27a6006ea1cc581b.jpg";      // Парикмахерские услуги (например: "photos/hair.jpg")
+    const photoNails = "https://i.pinimg.com/1200x/6f/d6/c2/6fd6c25dd4055acd8032637339ab0e27.jpg";     // Маникюр (например: "photos/nails.jpg")
+    const photoMakeup = "https://i.pinimg.com/736x/d0/2c/c3/d02cc37a67200c4a937818988e9795fc.jpg";    // Макияж (например: "photos/makeup.jpg")
+    const photoSpa = "https://i.pinimg.com/1200x/f7/82/0e/f7820e014246b789a9c6c8132acd5914.jpg";       // Спа-процедуры (например: "photos/spa.jpg")
+
+    // ========== ФОТО ДЛЯ ПРИМЕРОВ РАБОТ (8 штук) ==========
+    const photoColoring = "https://i.pinimg.com/736x/be/32/aa/be32aae874144a7157a1a16851366f34.jpg";       // Окрашивание
+    const photoHaircut = "https://i.pinimg.com/736x/31/f9/fd/31f9fd5628731df31b4f680767d2acdf.jpg";        // Стрижка
+    const photoStyling = "https://i.pinimg.com/1200x/1a/2f/ab/1a2fab88c80d13500b3a24f8fbeca5e0.jpg";        // Укладка
+    const photoNailDesign = "https://i.pinimg.com/736x/ee/f0/6c/eef06ce178032ea6d29227141c247318.jpg";     // Маникюр с дизайном
+    const photoEveningMakeup = "https://i.pinimg.com/736x/30/bf/27/30bf2772822e070083eda963301364fd.jpg";  // Вечерний макияж
+    const photoSpaCare = "https://i.pinimg.com/736x/79/55/d9/7955d9a843c5f980afb7dbc3d2682472.jpg";        // Спа-уход
+    const photoHairTreatment = "https://i.pinimg.com/736x/d9/94/a4/d994a4024aae28501fa52ef540620dea.jpg";  // Лечение волос (новый)
+    const photoManicure = "https://i.pinimg.com/736x/7e/fb/54/7efb5473bafea0997b5ea8a6e08b887b.jpg";       // Классический маникюр (новый)
+</script>
+<!-- ======================================================= -->
+
+<div class="container">
+    <div class="header">
+        <h1>Салон Красоты</h1>
+        <div class="brand-highlight" id="typewriterText" onclick="easterEgg()"></div>
+        <h1><div class="tagline">Профессиональные услуги</div></h1>
+        <div class="nav-menu">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">О нас</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+    </div>
+
+    <div class="contact-info">
+        📍 Сыктывкар | 📞 +7 (999) 123-45-67 | 🕒 Пн–Вс: 09:00–21:00
+    </div>
+
+    <h2 class="section-title">Услуги и цены</h2>
+    <div class="services-grid" id="servicesGrid"></div>
+
+    <h2 class="section-title">Примеры работ</h2>
+    <div class="price-grid" id="priceGrid"></div>
+
+    <div class="newsletter">
+        <h4>Будьте в курсе акций</h4>
+        <div class="newsletter-form">
+            <input type="email" id="newsletterEmail" placeholder="Ваш email">
+            <button class="btn-primary" onclick="subscribeNewsletter()">Подписаться</button>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <p>Чтобы записаться, позвоните или напишите нам</p>
+        <p>Салон красоты «Центрифуга»</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+
+<script>
+    // ========== ПРИВЕТСТВЕННЫЙ POP-UP (1 раз) ==========
+    if (!localStorage.getItem('welcomed')) {
+        setTimeout(() => {
+            alert('🌸 Добро пожаловать в «Центрифуга»! У нас скидка 20% на первое посещение! 🌸');
+            localStorage.setItem('welcomed', 'true');
+        }, 800);
+    }
+
+    // ========== ЭФФЕКТ ПЕЧАТНОЙ МАШИНКИ ==========
+    const text = "Центрифуга";
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typewriterText").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    typeWriter();
+
+    // ========== СЕРДЕЧКИ ПРИ КЛИКЕ ==========
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.btn-primary')) {
+            let heart = document.createElement('div');
+            heart.innerHTML = ['❤️', '💖', '💗', '💓', '🌸', '✨'][Math.floor(Math.random() * 6)];
+            heart.style.position = 'fixed';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            heart.style.fontSize = (Math.random() * 20 + 16) + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'floatHeart 1s ease-out forwards';
+            heart.style.zIndex = '2000';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        }
+    });
+
+    // ========== ПАСХАЛКА (клик на логотип 5 раз) ==========
+    let clickCount = 0;
+    document.querySelector('.brand-highlight').addEventListener('click', () => {
+        clickCount++;
+        if (clickCount === 5) {
+            alert('🎉 Вы нашли секрет! Скидка 10% по промокоду CENTRIFUGA10 🎉');
+            canvasConfetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#8A8E75', '#D5C7AD', '#ffb7c5'] });
+            clickCount = 0;
+        }
+    });
+
+    // ========== КОТИК ГОВОРИТ ==========
+    function mascotTalk() {
+        const phrases = [
+            'Мяу! Приходите в салон, сделаем вам красиво! 🐾',
+            'Центрифуга — лучшее место для вашей красоты! ',
+            'Скидка 20% на первое посещение! ',
+            'Мяу-мяу! Запишитесь уже сегодня! 📅',
+            'Наши мастера — волшебники! ✨'
+        ];
+        alert(phrases[Math.floor(Math.random() * phrases.length)]);
+        canvasConfetti({ particleCount: 30, spread: 40, origin: { y: 0.8 }, colors: ['#ffb7c5', '#ff9eb5'] });
+    }
+
+    // ========== ТЁМНАЯ ТЕМА ==========
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.querySelector('.theme-toggle');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+
+    // ========== ПОДПИСКА ==========
+    function subscribeNewsletter() {
+        let email = document.getElementById('newsletterEmail').value;
+        if(email && email.includes('@')) {
+            alert(`🎉 Спасибо! Акции будут на ${email}`);
+            document.getElementById('newsletterEmail').value = '';
+            canvasConfetti({ particleCount: 50, spread: 50, origin: { y: 0.8 } });
+        } else {
+            alert("Введите email");
+        }
+    }
+
+    // ========== КНОПКА НАВЕРХ ==========
+    function scrollToTop() { window.scrollTo({top:0,behavior:'smooth'}); }
+    window.onscroll = function() { 
+        document.querySelector('.scroll-top').style.display = window.scrollY > 200 ? 'block' : 'none'; 
+    };
+
+    // ========== ЗАГРУЗКА КАРТОЧЕК ==========
+    function loadServices() {
+        const container = document.getElementById('servicesGrid');
+        if (!container) return;
+        const services = [
+            { name: "Парикмахерские услуги", price: "Стрижка от 1200 ₽", photo: photoHair },
+            { name: "Маникюр", price: "от 1000 ₽", photo: photoNails },
+            { name: "Макияж", price: "от 1500 ₽", photo: photoMakeup },
+            { name: "Спа-процедуры", price: "от 2000 ₽", photo: photoSpa }
+        ];
+        container.innerHTML = "";
+        for (let s of services) {
+            let photoHtml = s.photo ? `<img src="${s.photo}" alt="${s.name}">` : `<span style="font-size: 2rem;">➕</span>`;
+            container.innerHTML += `<div class="service-card"><div class="service-photo">${photoHtml}</div><h3>${s.name}</h3><div class="service-price">${s.price}</div></div>`;
+        }
+    }
+
+    function loadPrices() {
+        const container = document.getElementById('priceGrid');
+        if (!container) return;
+        const works = [
+            { title: "Окрашивание", price: "от 3500 ₽", photo: photoColoring },
+            { title: "Стрижка", price: "от 1500 ₽", photo: photoHaircut },
+            { title: "Укладка", price: "от 1200 ₽", photo: photoStyling },
+            { title: "Маникюр с дизайном", price: "от 1500 ₽", photo: photoNailDesign },
+            { title: "Вечерний макияж", price: "от 2500 ₽", photo: photoEveningMakeup },
+            { title: "Спа-уход", price: "от 2000 ₽", photo: photoSpaCare },
+            { title: "Лечение волос", price: "от 1800 ₽", photo: photoHairTreatment },
+            { title: "Классический маникюр", price: "от 1000 ₽", photo: photoManicure }
+        ];
+        container.innerHTML = "";
+        for (let w of works) {
+            let photoHtml = w.photo ? `<img src="${w.photo}" alt="${w.title}">` : `<span style="font-size: 2rem;">➕</span>`;
+            container.innerHTML += `<div class="price-item"><div class="work-photo">${photoHtml}</div><h3>${w.title}</h3><div class="price-tag">${w.price}</div><a href="booking.html" class="btn-primary">Записаться</a></div>`;
+        }
+    }
+
+    loadServices();
+    loadPrices();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы - Салон красоты «Центрифуга»</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #F1EAD8;
+            color: #2D2F22;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        body.dark-mode .header,
+        body.dark-mode .review-card,
+        body.dark-mode .add-review {
+            background: #2a2a3a;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+        body.dark-mode .nav-menu a { color: #e0e0e0; }
+        body.dark-mode .nav-menu a:hover { background: #444; }
+        
+        :root {
+            --primary: #8A8E75;
+            --primary-dark: #6B6F56;
+            --secondary: #D5C7AD;
+            --text-dark: #676b4d;
+            --text-light: #68604D;
+            --border-light: #D5C7AD;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 1.5rem; }
+        .header {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: #FFFFFF;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            transition: background 0.3s;
+        }
+        .header h1 { font-size: 2rem; font-weight: 400; color: var(--text-light); }
+        .brand-highlight { font-size: 3rem; font-weight: 800; color: var(--text-dark); }
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-menu a { text-decoration: none; font-weight: 500; color: var(--text-dark); padding: 0.3rem 1rem; border-radius: 2rem; transition: 0.2s; }
+        .nav-menu a:hover { background: var(--secondary); }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+        .review-card {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 3px solid var(--primary);
+            transition: background 0.3s;
+        }
+        .review-name { font-weight: 600; }
+        .review-stars { color: #f4b400; margin: 0.3rem 0; }
+        .review-text { color: var(--text-light); margin-top: 0.5rem; }
+        body.dark-mode .review-text { color: #aaa; }
+        .add-review {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+        .add-review h3 { margin-bottom: 1rem; }
+        .add-review input, .add-review select, .add-review textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 1rem;
+            font-family: inherit;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 1001;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+        }
+        .footer-note { text-align: center; padding: 1.5rem 0; border-top: 1px solid var(--border-light); margin-top: 2rem; }
+        max-width: 680px { .brand-highlight { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+<div class="container">
+    <div class="header">
+        <h1>Салон Красоты</h1>
+        <div class="brand-highlight">Центрифуга</div>
+        <div class="nav-menu">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">О нас</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+    </div>
+
+    <h2 class="section-title">Отзывы клиентов</h2>
+    <div id="reviewsList">
+        <div class="review-card"><div class="review-name">Анастасия</div><div class="review-stars">★★★★★</div><div class="review-text">Отличный салон! Мастера профессионалы, атмосфера уютная. Рекомендую!</div></div>
+        <div class="review-card"><div class="review-name">Дмитрий</div><div class="review-stars">★★★★★</div><div class="review-text">Делал стрижку, очень доволен. Записался повторно.</div></div>
+        <div class="review-card"><div class="review-name">Екатерина</div><div class="review-stars">★★★★★</div><div class="review-text">Маникюр и окрашивание на высшем уровне. Спасибо мастерам!</div></div>
+    </div>
+
+    <div class="add-review">
+        <h3>Оставьте свой отзыв</h3>
+        <input type="text" id="reviewName" placeholder="Ваше имя">
+        <select id="reviewStars">
+            <option value="5">★★★★★ (5)</option>
+            <option value="4">★★★★☆ (4)</option>
+            <option value="3">★★★☆☆ (3)</option>
+        </select>
+        <textarea id="reviewText" rows="3" placeholder="Ваш отзыв..."></textarea>
+        <button class="btn-primary" onclick="addReview()">Оставить отзыв</button>
+    </div>
+
+    <div class="footer-note">
+        <a href="index.html" style="color: var(--primary); text-decoration: none;">← Вернуться на главную</a>
+    </div>
+</div>
+
+<script>
+    function addReview() {
+        let name = document.getElementById('reviewName').value.trim();
+        let stars = document.getElementById('reviewStars').value;
+        let text = document.getElementById('reviewText').value.trim();
+        if (!name || !text) { alert("Заполните имя и отзыв"); return; }
+        let starsHtml = '';
+        for(let i = 0; i < stars; i++) starsHtml += '★';
+        for(let i = stars; i < 5; i++) starsHtml += '☆';
+        let newReview = `<div class="review-card"><div class="review-name">${name}</div><div class="review-stars">${starsHtml}</div><div class="review-text">${text}</div></div>`;
+        document.getElementById('reviewsList').innerHTML += newReview;
+        document.getElementById('reviewName').value = '';
+        document.getElementById('reviewText').value = '';
+        alert("Спасибо за отзыв!");
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.querySelector('.theme-toggle');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+</script>
+</body>
+</html>
