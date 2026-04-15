@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - Салон красоты «Центрифуга»</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #F1EAD8;
+            color: #2D2F22;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        body.dark-mode .header,
+        body.dark-mode .service-category {
+            background: #2a2a3a;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+        body.dark-mode .nav-menu a { color: #e0e0e0; }
+        body.dark-mode .nav-menu a:hover { background: #444; }
+        
+        :root {
+            --primary: #8A8E75;
+            --primary-dark: #6B6F56;
+            --secondary: #D5C7AD;
+            --text-dark: #6f7453;
+            --text-light: #68604D;
+            --border-light: #D5C7AD;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
+        .header {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: #FFFFFF;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            transition: background 0.3s;
+        }
+        .header h1 { font-size: 2rem; font-weight: 400; color: var(--text-light); }
+        .brand-highlight { font-size: 3rem; font-weight: 800; color: var(--text-dark); }
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-menu a { text-decoration: none; font-weight: 500; color: var(--text-dark); padding: 0.3rem 1rem; border-radius: 2rem; transition: 0.2s; }
+        .nav-menu a:hover { background: var(--secondary); }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+        .service-category {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+        .service-category h3 { font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 1rem; }
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+        .service-name { font-weight: 500; }
+        .service-price { color: var(--primary); font-weight: 600; }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 1001;
+        }
+        .footer-note { text-align: center; padding: 1.5rem 0; border-top: 1px solid var(--border-light); margin-top: 2rem; }
+        max-width: 680px { .brand-highlight { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+<div class="container">
+    <div class="header">
+        <h1>Салон Красоты</h1>
+        <div class="brand-highlight">Центрифуга</div>
+        <div class="nav-menu">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">О нас</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+    </div>
+
+    <h2 class="section-title">Наши услуги и цены</h2>
+
+    <div class="service-category"><h3> Парикмахерские услуги</h3>
+        <div class="service-item"><span class="service-name">Женская стрижка</span><span class="service-price">1200 ₽</span></div>
+        <div class="service-item"><span class="service-name">Мужская стрижка</span><span class="service-price">800 ₽</span></div>
+        <div class="service-item"><span class="service-name">Окрашивание</span><span class="service-price">от 2500 ₽</span></div>
+        <div class="service-item"><span class="service-name">Мелирование</span><span class="service-price">от 2000 ₽</span></div>
+        <div class="service-item"><span class="service-name">Укладка</span><span class="service-price">1000 ₽</span></div>
+        <div class="service-item"><span class="service-name">Лечение волос</span><span class="service-price">1500 ₽</span></div>
+    </div>
+
+    <div class="service-category"><h3> Ногтевой сервис</h3>
+        <div class="service-item"><span class="service-name">Маникюр</span><span class="service-price">1000 ₽</span></div>
+        <div class="service-item"><span class="service-name">Педикюр</span><span class="service-price">1500 ₽</span></div>
+        <div class="service-item"><span class="service-name">Покрытие гель-лак</span><span class="service-price">800 ₽</span></div>
+        <div class="service-item"><span class="service-name">Дизайн ногтей</span><span class="service-price">от 500 ₽</span></div>
+        <div class="service-item"><span class="service-name">Наращивание ногтей</span><span class="service-price">2000 ₽</span></div>
+    </div>
+
+    <div class="service-category"><h3> Макияж</h3>
+        <div class="service-item"><span class="service-name">Дневной макияж</span><span class="service-price">1500 ₽</span></div>
+        <div class="service-item"><span class="service-name">Вечерний макияж</span><span class="service-price">2000 ₽</span></div>
+        <div class="service-item"><span class="service-name">Свадебный макияж</span><span class="service-price">3000 ₽</span></div>
+        <div class="service-item"><span class="service-name">Коррекция бровей</span><span class="service-price">500 ₽</span></div>
+        <div class="service-item"><span class="service-name">Окрашивание бровей</span><span class="service-price">600 ₽</span></div>
+    </div>
+
+    <div class="service-category"><h3> Спа-процедуры</h3>
+        <div class="service-item"><span class="service-name">Массаж лица</span><span class="service-price">1200 ₽</span></div>
+        <div class="service-item"><span class="service-name">Массаж спины</span><span class="service-price">1500 ₽</span></div>
+        <div class="service-item"><span class="service-name">Обёртывание</span><span class="service-price">2000 ₽</span></div>
+        <div class="service-item"><span class="service-name">Пилинг тела</span><span class="service-price">1800 ₽</span></div>
+    </div>
+
+    <div class="footer-note">
+        <a href="index.html" style="color: var(--primary); text-decoration: none;">← Вернуться на главную</a>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.querySelector('.theme-toggle');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+</script>
+</body>
+</html>

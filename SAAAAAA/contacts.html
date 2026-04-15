@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Салон красоты «Центрифуга»</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #F1EAD8;
+            color: #2D2F22;
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        body.dark-mode .header,
+        body.dark-mode .contacts-block {
+            background: #2a2a3a;
+            color: #e0e0e0;
+            border-color: #444;
+        }
+        body.dark-mode .nav-menu a { color: #e0e0e0; }
+        body.dark-mode .nav-menu a:hover { background: #444; }
+        body.dark-mode .work-hours { background: #3a3a4a; }
+        
+        :root {
+            --primary: #8A8E75;
+            --primary-dark: #6B6F56;
+            --secondary: #D5C7AD;
+            --text-dark: #666b4c;
+            --text-light: #68604D;
+            --border-light: #D5C7AD;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 1.5rem; }
+        .header {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: #FFFFFF;
+            border-radius: 2rem;
+            margin-bottom: 2rem;
+            transition: background 0.3s;
+        }
+        .header h1 { font-size: 2rem; font-weight: 400; color: var(--text-light); }
+        .brand-highlight { font-size: 3rem; font-weight: 800; color: var(--text-dark); }
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            padding: 0.5rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-menu a { text-decoration: none; font-weight: 500; color: var(--text-dark); padding: 0.3rem 1rem; border-radius: 2rem; transition: 0.2s; }
+        .nav-menu a:hover { background: var(--secondary); }
+        .contacts-block {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s;
+        }
+        .contacts-block p { margin: 0.8rem 0; }
+        .work-hours { background: var(--secondary); padding: 1rem; border-radius: 1rem; margin-top: 1rem; transition: background 0.3s; }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 1001;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .footer-note { text-align: center; padding: 1.5rem 0; border-top: 1px solid var(--border-light); margin-top: 2rem; }
+        max-width: 680px { .brand-highlight { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+<div class="container">
+    <div class="header">
+        <h1>Салон Красоты</h1>
+        <div class="brand-highlight">Центрифуга</div>
+        <div class="nav-menu">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="about.html">О нас</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Контакты</a>
+        </div>
+    </div>
+
+    <div class="contacts-block">
+        <p><strong>📍 Адрес:</strong> г. Сыктывкар</p>
+        <p><strong>📞 Телефон:</strong> +7 (999) 123-45-67</p>
+        <p><strong>✉️ Email:</strong> salon@centrifuga.ru</p>
+        <div class="work-hours">
+            <h3>🕒 Время работы</h3>
+            <p>Пн–Ср: 9:00–14:00</p>
+            <p>Чт–Пт: 9:00–20:00</p>
+            <p>Сб: 9:00–18:00</p>
+            <p>Вс: выходной</p>
+        </div>
+        <a href="booking.html" class="btn-primary">📅 Записаться онлайн</a>
+    </div>
+
+    <div class="footer-note">
+        <a href="index.html" style="color: var(--primary); text-decoration: none;">← Вернуться на главную</a>
+    </div>
+</div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const btn = document.querySelector('.theme-toggle');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+</script>
+</body>
+</html>

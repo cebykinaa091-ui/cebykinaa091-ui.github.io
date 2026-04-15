@@ -1,0 +1,45 @@
+ const photoHair = "https://i.pinimg.com/1200x/1b/0c/53/1b0c538f2e8a280c27a6006ea1cc581b.jpg";        // Фото для парикмахерских услуг
+    const photoNails = "https://i.pinimg.com/1200x/82/54https://i.pinimg.com/736x/06/41/ac/0641acc33695e67eea6ee7df8a1d152e.jpg
+    /ba/8254bac40396a5b3693ab569120421dd.jpg";       // Фото для маникюра
+    const photoMakeup = "";      // Фото для макияжа
+    const photoSpa = "https://i.pinimg.com/1200x/f7/82/0e/f7820e014246b789a9c6c8132acd5914.jpg";         // Фото для спа-процедур
+
+    // ФОТО ДЛЯ ПРИМЕРОВ РАБОТ
+    const photoColoring = "https://i.pinimg.com/736x/43/54/19/43541930aafc8ed7a29e416b741476a8.jpg";    // Фото окрашивания
+    const photoHaircut = "https://i.pinimg.com/736x/12/64/5e/12645e38ac00c1023581e60455b02e69.jpg";     // Фото стрижки
+    const photoStyling = "https://i.pinimg.com/736x/e3/94/00/e394000e4b7d537debd2cace0224b268.jpg";     // Фото укладки
+</script>
+
+ .divider-wave {
+    border: none;
+    height: 20px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 20" fill="%23b95f4a" opacity="0.3"><path d="M0,10 Q30,0 60,10 T120,10 T180,10 T240,10 T300,10 T360,10 T420,10 T480,10 T540,10 T600,10 T660,10 T720,10 T780,10 T840,10 T900,10 T960,10 T1020,10 T1080,10 T1140,10 T1200,10" stroke="%23b95f4a" fill="none" stroke-width="2"/></svg>') repeat-x;
+    background-size: 60px 20px;
+    margin: 2rem 0;
+    <hr class="divider-wave"></hr>
+    // ФОТО ДЛЯ КАРТОЧЕК (вставьте свои)
+    const photoHair = "https://i.pinimg.com/1200x/1b/0c/53/1b0c538f2e8a280c27a6006ea1cc581b.jpg";
+    const photoNails = "https://i.pinimg.com/1200x/6f/d6/c2/6fd6c25dd4055acd8032637339ab0e27.jpg";
+    const photoMakeup = "https://i.pinimg.com/736x/d0/2c/c3/d02cc37a67200c4a937818988e9795fc.jpg";
+    const photoSpa = "https://i.pinimg.com/1200x/f7/82/0e/f7820e014246b789a9c6c8132acd5914.jpg";        
+    const photoColoring = "https://i.pinimg.com/736x/43/54/19/43541930aafc8ed7a29e416b741476a8.jpg";
+    const photoHaircut = "https://i.pinimg.com/736x/12/64/5e/12645e38ac00c1023581e60455b02e69.jpg";
+    const photoStyling = "https://i.pinimg.com/736x/e3/94/00/e394000e4b7d537debd2cace0224b268.jpg";
+</script>
+<script>
+    // ========== ФОТО ДЛЯ КАРТОЧЕК УСЛУГ (4 штуки) ==========
+    const photoHair = "https://i.pinimg.com/1200x/1b/0c/53/1b0c538f2e8a280c27a6006ea1cc581b.jpg";      // Парикмахерские услуги (например: "photos/hair.jpg")
+    const photoNails = "https://i.pinimg.com/1200x/6f/d6/c2/6fd6c25dd4055acd8032637339ab0e27.jpg";     // Маникюр (например: "photos/nails.jpg")
+    const photoMakeup = "https://i.pinimg.com/736x/d0/2c/c3/d02cc37a67200c4a937818988e9795fc.jpg";    // Макияж (например: "photos/makeup.jpg")
+    const photoSpa = "https://i.pinimg.com/1200x/f7/82/0e/f7820e014246b789a9c6c8132acd5914.jpg";       // Спа-процедуры (например: "photos/spa.jpg")
+
+    // ========== ФОТО ДЛЯ ПРИМЕРОВ РАБОТ (8 штук) ==========
+    const photoColoring = "https://i.pinimg.com/736x/be/32/aa/be32aae874144a7157a1a16851366f34.jpg";       // Окрашивание
+    const photoHaircut = "https://i.pinimg.com/736x/31/f9/fd/31f9fd5628731df31b4f680767d2acdf.jpg";        // Стрижка
+    const photoStyling = "https://i.pinimg.com/1200x/1a/2f/ab/1a2fab88c80d13500b3a24f8fbeca5e0.jpg";        // Укладка
+    const photoNailDesign = "https://i.pinimg.com/736x/ee/f0/6c/eef06ce178032ea6d29227141c247318.jpg";     // Маникюр с дизайном
+    const photoEveningMakeup = "https://i.pinimg.com/736x/30/bf/27/30bf2772822e070083eda963301364fd.jpg";  // Вечерний макияж
+    const photoSpaCare = "https://i.pinimg.com/736x/79/55/d9/7955d9a843c5f980afb7dbc3d2682472.jpg";        // Спа-уход
+    const photoHairTreatment = "https://i.pinimg.com/736x/d9/94/a4/d994a4024aae28501fa52ef540620dea.jpg";  // Лечение волос (новый)
+    const photoManicure = "https://i.pinimg.com/736x/7e/fb/54/7efb5473bafea0997b5ea8a6e08b887b.jpg";       // Классический маникюр (новый)
+</script>
